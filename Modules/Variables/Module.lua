@@ -81,3 +81,5 @@ do
    Utility.Player.HRP = Utility.Player.Character.HumanoidRootPart or Utility.Player.Character:WaitForChild("HumanoidRootPart")
    Utility.Player.State = Utility.Player.Humanoid:GetState() 
 end
+
+return Utility
