@@ -1,7 +1,5 @@
 local game; game = game -- Yes
 
-local game; game = game -- Yes
-
 
 local Utility = {
    Version = 1.1,
