@@ -44,7 +44,7 @@ Utility.Player.Character = Utility.Service.Players.LocalPlayer.Character or Util
 Utility.Player.Humanoid = Utility.Player.Character.Humanoid or Utility.Player.Character:WaitForChild("Humanoid") or Utility.Player.Character:FindFirstChildOfClass("Humanoid")
 Utility.Player.HRP = Utility.Player.Character.HumanoidRootPart or Utility.Player.Character:WaitForChild("HumanoidRootPart")
 Utility.Player.MoveDirection = Utility.Player.Humanoid.MoveDirection
-Utility.Player.CF = Utility.Player.HRP.
+Utility.Player.CF = Utility.Player.HRP.CFrame
 Utility.Player.State = Utility.Player.Humanoid:GetState() 
 
 
