@@ -1,4 +1,4 @@
-# Documentation
+# Documentation (doc outdated, update tommorow)
 
 **At the moment, this module does not have much content.**
 **More content will be added as time goes on.**
