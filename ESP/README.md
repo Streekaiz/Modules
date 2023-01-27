@@ -1,6 +1,6 @@
 # Documentation
 created by streekaiz#1132
-
+This will not manage chams and update them, but make it easier to highlight players and manage those highlights.
 ## Loading
 ```lua
 local Chams = loadstring(
