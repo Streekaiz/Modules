@@ -53,6 +53,7 @@ Utility.Player.Character
 Utility.Player.Humanoid
 Utility.Player.HRP
 Utility.Player.State
+Utility.Player.CF 
 ```
 
 ### Unlabeled
@@ -60,20 +61,20 @@ Utility.Player.State
 Utility.LocalPlayer
 ```
 ## Functions
-## GetExecutor()
+## Utility.GetExecutor()
 ```lua
 Utility.Functions.GetExecutor(boolean)
 ```
 If the boolean in the function is true then it'll uses the executor's functions to identify the executor
 However, if the boolean is false then it'll use identifyexecutor() to identify the executor.
 
-## GetKey()
+## Utility.GetKey()
 
 ```lua
 Utility.Functions.GetKey(key)
 ```
 returns Enum.KeyCode[key] (a little useless but whatever
-## Log()
+## Utility.Log()
 ```lua
 Utility.Functions.Log(type, content)
 ```
@@ -84,9 +85,25 @@ Utility.Functions.Log(type, content)
 "Error"
 ```
 Logs content into the F9 console.
-## DisableLogService()
+## Utility.DisableLogService()
 ```lua
 Utility.Functions.DisableLogService()
 ```
 Disables anything logged into the F9 console. This can be used for games like Pet Simulator X because they log anything in the console.
 If your executor doesn't support **getconnections()**, this function will not work.
+## Utility.Highlight()
+> No documentation, look in source (sory)
+## Utility.GetClosestPlayerToFOV()
+> No documentation, look in source (sory)
+## Utility.Load()
+```lua
+Utility.Load(string)
+```
+string = github link or pastebin
+## Utility.Crash()
+hate the guy that executed your script? use this
+## Utility.LearnCatFact(bool)
+```lua
+Utility.LearnCatFact(true)
+```
+This will return a fact about cats, and if the bool is true, will also print that fact!!
