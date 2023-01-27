@@ -4,7 +4,7 @@ if not game:GetService("CoreGui"):FindFirstChild("Chams") then
     Chams.Name = "Chams"
 end
 local Utility = {}
-function Utility.AddPlayer(name, args)
+function Utility.AddPlayer(Name, args)
   local cfg = args or {}
 	local Enabled = cfg.Enabled or true
 	local Color1 = cfg.FColor or Color3.fromRGB(255, 0, 0)
@@ -17,12 +17,12 @@ function Utility.AddPlayer(name, args)
 	repeat task.wait() until game.Players[name]:FindFirstChild("Character")
 	Highlight.Adornee = game.Players[name].Character
 	Highlight.Enabled = Enabled
-	Highlight.Parent = f
-	Highlight.Name = name
-	Highlight.FillColor = Color1
-	Highlight.OutlineColor = Color2
-	Highlight.FillTransparency = Transparency1
-	Highlight.OutlineTransparency = Transparency2
+	Highlight.Parent = Folder
+	Highlight.Name = Name
+	Highlight.FillColor = FColor
+	Highlight.OutlineColor = OColor
+	Highlight.FillTransparency = FTransparency
+	Highlight.OutlineTransparency = OTransparency
 	Highlight.DepthMode = Depth
 end
 function Utility.Team(plr)
