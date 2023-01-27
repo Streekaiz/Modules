@@ -39,3 +39,5 @@ function Utility.Unload()
 		v:Destroy()
 	end
 end
+
+return Utility
