@@ -40,5 +40,7 @@ This will return true if the player is in a team with the local player, and retu
 Chams.Health(Player)
 ```
 This will return the humanoid's health. You can possibly make their highlights change color depending on health!
+## Resources
+[Highlight Documentation](https://create.roblox.com/docs/reference/engine/classes/Highlight)
 
 This is the end of the documentation. Have any ideas I could add to this? DM me via discord.
