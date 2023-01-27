@@ -1,6 +1,5 @@
 # Documentation
 created by streekaiz#1132
-This will not manage chams and update them, but make it easier to highlight players and manage those highlights.
 ## Loading
 ```lua
 local Chams = loadstring(
@@ -42,5 +41,7 @@ Chams.Health(Player)
 This will return the humanoid's health. You can possibly make their highlights change color depending on health!
 ## Resources
 [Highlight Documentation](https://create.roblox.com/docs/reference/engine/classes/Highlight)
+
+A reminder that this is to easily highlight players & make it easier to manage those highlights.
 
 This is the end of the documentation. Have any ideas I could add to this? DM me via discord.
