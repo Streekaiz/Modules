@@ -4,6 +4,7 @@ if not game:GetService("CoreGui"):FindFirstChild("Chams") then
     Chams.Name = "Chams"
 end
 local Utility = {}
+
 function Utility.AddPlayer(Name, args)
   local cfg = args or {}
 	local Enabled = cfg.Enabled or true
@@ -25,19 +26,16 @@ function Utility.AddPlayer(Name, args)
 	Highlight.OutlineTransparency = OTransparency
 	Highlight.DepthMode = Depth
 end
+
 function Utility.Team(plr)
     if plr.Team == game:GetService("Players").LocalPlayer.Team then
 		return true else return false end
 end
+
 function Utility.Health(plr)
     repeat task.wait() until plr.Character
 	local Humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
 	if Humanoid then return Humanoid.Health end
-end
-function Utility.Unload()
-    for _, v in next, Chams:GetChildren() do
-		v:Destroy()
-	end
 end
 
 return Utility
