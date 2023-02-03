@@ -11,7 +11,6 @@ function Utility:ESP(Player, Args)
 	local OutlineColor = args.OutlineColor or Color3.fromRGB(0, 0, 0)
 	local FillTransparency = args.FillTransparency or 0
 	local OutlineTransparency = args.OutlineTransparency or 0
-	local Depth = args.Depth or "AlwaysOnTop"
 	local F = args.Folder or Utility.Folder
 
 	local Clone = Utility.Highlight:Clone()
@@ -22,7 +21,6 @@ function Utility:ESP(Player, Args)
 	Clone.OutlineTransparency = OutlineTransparency
 	Clone.Adornee = Player
 	Clone.Name = Player.Name
-	Clone.Depth = Depth
 end
 
 function Utility.Team(plr)
@@ -35,5 +33,4 @@ function Utility.Health(plr)
 	local Humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
 	if Humanoid then return Humanoid.Health end
 end
-
 return Utility
