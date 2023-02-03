@@ -1,30 +1,28 @@
-if not game:GetService("CoreGui"):FindFirstChild("Chams") then
-    local Chams = Instance.new("Folder")
-    Chams.Parent = game:GetService("CoreGui")
-    Chams.Name = "Chams"
-end
-local Utility = {}
 
-function Utility.AddPlayer(Name, args)
-  local cfg = args or {}
-	local Enabled = cfg.Enabled or true
-	local Color1 = cfg.FColor or Color3.fromRGB(255, 0, 0)
-	local Color2 = cfg.OColor or Color3.fromRGB(0, 0, 0)
-	local Transparency1 = cfg.FTransparency or 0
-	local Transparency2 = cfg.OTransparency or 0
-	local Depth = cfg.Depth or "AlwaysOnTop"
-	local Folder = cfg.Folder or Chams
-	local Highlight = Instance.new("Highlight"):Clone()
-	repeat task.wait() until game.Players[name]:FindFirstChild("Character")
-	Highlight.Adornee = game.Players[name].Character
-	Highlight.Enabled = Enabled
-	Highlight.Parent = Folder
-	Highlight.Name = Name
-	Highlight.FillColor = FColor
-	Highlight.OutlineColor = OColor
-	Highlight.FillTransparency = FTransparency
-	Highlight.OutlineTransparency = OTransparency
-	Highlight.DepthMode = Depth
+local Utility = {
+	Highlight = Instance.new("Highlight"),
+	Folder = Instance.new("Folder")
+}
+Utility.Folder.Parent = game:GetService("CoreGui")
+
+function Utility:ESP(Player, Args)
+    local args = Args
+	local FillColor = args.FillColor or Color3.fromRGB(255, 0, 0)
+	local OutlineColor = args.OutlineColor or Color3.fromRGB(0, 0, 0)
+	local FillTransparency = args.FillTransparency or 0
+	local OutlineTransparency = args.OutlineTransparency or 0
+	local Depth = args.Depth or "AlwaysOnTop"
+	local F = args.Folder or Utility.Folder
+
+	local Clone = Utility.Highlight:Clone()
+	Clone.Parent = F
+	Clone.FillColor = FillColor
+	Clone.OutlineColor = OutlineColor
+	Clone.FillTransparency = FillTransparency
+	Clone.OutlineTransparency = OutlineTransparency
+	Clone.Adornee = Player
+	Clone.Name = Player.Name
+	Clone.Depth = Depth
 end
 
 function Utility.Team(plr)
