@@ -9,23 +9,26 @@ local Chams = loadstring(
 )()
 ```
 ## Functions
-### Chams.AddPlayer()
+### Chams:ESP()
+look at source because i cant be bothered to make doc rn
 ```lua
-Chams.AddPlayer(
-	PlayerName
-	{
-		Enabled = bool,
-		Color1 = color,
-		Color2 = color,
-		Transparency1 = number,
-		Transparency2 = number,
-		Depth = string, -- look further into highlight docs
-		Folder = path --[[
-			There is already a folder made parented to coregui, 
-			so you wont need to define this unless you'd like to
-			use your own folder.
-		]]
-})
+function Chams:ESP(Player, Args)
+    local args = Args
+	local FillColor = args.FillColor or Color3.fromRGB(255, 0, 0)
+	local OutlineColor = args.OutlineColor or Color3.fromRGB(0, 0, 0)
+	local FillTransparency = args.FillTransparency or 0
+	local OutlineTransparency = args.OutlineTransparency or 0
+	local F = args.Folder or Utility.Folder
+
+	local Clone = Utility.Highlight:Clone()
+	Clone.Parent = F
+	Clone.FillColor = FillColor
+	Clone.OutlineColor = OutlineColor
+	Clone.FillTransparency = FillTransparency
+	Clone.OutlineTransparency = OutlineTransparency
+	Clone.Adornee = Player
+	Clone.Name = Player.Name
+end
 ```
 
 ### Chams.Team()
