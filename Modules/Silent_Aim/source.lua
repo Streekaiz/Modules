@@ -1,5 +1,5 @@
 getgenv().SilentAimSettings = {
-    Enabled = false
+    Enabled = false,
     TeamCheck = false,
     VisibleCheck = false, 
     TargetPart = "HumanoidRootPart",
