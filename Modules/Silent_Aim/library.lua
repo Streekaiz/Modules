@@ -199,3 +199,5 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
     end
     return oldNamecall(...)
 end))
+
+return getgenv().SilentAimSettings
