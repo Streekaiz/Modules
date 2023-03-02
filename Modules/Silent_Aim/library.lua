@@ -1,21 +1,18 @@
 getgenv().SilentAimSettings = {
     Enabled = false,
+    Radius = 180,
+    Sides = 64,
     TeamCheck = false,
-    VisibleCheck = false, 
-    TargetPart = "HumanoidRootPart",
-    SilentAimMethod = "Raycast",
-    FOVRadius = 130,
-    FOVColor = Color3.fromRGB(255, 255, 255),
-    FOVVisible = false,
-    ShowSilentAimTarget = false,
+    VisibleCheck = false,
+    TargetPart = "Head",
+    Method = "Raycast",
     HitChance = 100
 }
-local Camera = workspace.CurrentCamera
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local GuiService = game:GetService("GuiService")
-local UserInputService = game:GetService("UserInputService")
-local HttpService = game:GetService("HttpService")
+
+local MainFileName = "UniversalSilentAim"
+local SelectedFile, FileToSave = "", ""
+
+local Camera, Players, RunService, UserInputService = workspace.CurrentCamera, game:GetService("Players"), game:GetService("RunService"), game:GetService("UserInputService")
 
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
@@ -27,23 +24,9 @@ local WorldToViewportPoint = Camera.WorldToViewportPoint
 local GetPartsObscuringTarget = Camera.GetPartsObscuringTarget
 local FindFirstChild = game.FindFirstChild
 local RenderStepped = RunService.RenderStepped
-local GuiInset = GuiService.GetGuiInset
 local GetMouseLocation = UserInputService.GetMouseLocation
 
-local resume = coroutine.resume 
-local create = coroutine.create
-
 local ValidTargetParts = {"Head", "HumanoidRootPart"}
-
-local fov_circle = Drawing.new("Circle")
-fov_circle.Thickness = 1
-fov_circle.NumSides = 100
-fov_circle.Radius = 180
-fov_circle.Filled = false
-fov_circle.Visible = false
-fov_circle.ZIndex = 999
-fov_circle.Transparency = 1
-fov_circle.Color = Color3.fromRGB(54, 57, 241)
 
 local ExpectedArguments = {
     FindPartOnRayWithIgnoreList = {
@@ -127,7 +110,7 @@ local function IsPlayerVisible(Player)
 end
 
 local function getClosestPlayer()
-    if not SilentAimSettings.TargetPart then return end
+    if not SilentAimSettings.Method then return end
     local Closest
     local DistanceToMouse
     for _, Player in next, GetPlayers(Players) do
@@ -147,14 +130,13 @@ local function getClosestPlayer()
         if not OnScreen then continue end
 
         local Distance = (getMousePosition() - ScreenPosition).Magnitude
-        if Distance <= (DistanceToMouse or Options.Radius.Value or 2000) then
+        if Distance <= (DistanceToMouse or SilentAimSettings.Radius or 2000) then
             Closest = ((SilentAimSettings.TargetPart == "Random" and Character[ValidTargetParts[math.random(1, #ValidTargetParts)]]) or Character[SilentAimSettings.TargetPart])
             DistanceToMouse = Distance
         end
     end
     return Closest
 end
-
 
 local oldNamecall
 oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
@@ -163,7 +145,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
     local self = Arguments[1]
     local chance = CalculateChance(SilentAimSettings.HitChance)
     if SilentAimSettings.Enabled and self == workspace and not checkcaller() and chance == true then
-        if Method == "FindPartOnRayWithIgnoreList" and SilentAimSettings.SilentAimMethod == Method then
+        if Method == "FindPartOnRayWithIgnoreList" and SilentAimSettings.Method == Method then
             if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithIgnoreList) then
                 local A_Ray = Arguments[2]
 
@@ -176,7 +158,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
                     return oldNamecall(unpack(Arguments))
                 end
             end
-        elseif Method == "FindPartOnRayWithWhitelist" and SilentAimSettings.SilentAimMethod == Method then
+        elseif Method == "FindPartOnRayWithWhitelist" and SilentAimSettings.Method == Method then
             if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithWhitelist) then
                 local A_Ray = Arguments[2]
 
@@ -189,7 +171,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
                     return oldNamecall(unpack(Arguments))
                 end
             end
-        elseif (Method == "FindPartOnRay" or Method == "findPartOnRay") and SilentAimSettings.SilentAimMethod:lower() == Method:lower() then
+        elseif (Method == "FindPartOnRay" or Method == "findPartOnRay") and SilentAimSettings.Method:lower() == Method:lower() then
             if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRay) then
                 local A_Ray = Arguments[2]
 
@@ -202,7 +184,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
                     return oldNamecall(unpack(Arguments))
                 end
             end
-        elseif Method == "Raycast" and SilentAimSettings.SilentAimMethod == Method then
+        elseif Method == "Raycast" and SilentAimSettings.Method == Method then
             if ValidateArguments(Arguments, ExpectedArguments.Raycast) then
                 local A_Origin = Arguments[2]
 
@@ -217,5 +199,3 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
     end
     return oldNamecall(...)
 end))
-
-return getgenv().SilentAimSettings, fov_circle
